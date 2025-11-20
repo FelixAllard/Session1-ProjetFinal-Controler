@@ -7,38 +7,46 @@
 #include <Arduino.h>
 #include <HardwareSerial.h>
 
-bool upButtonpressed = false;
-bool downButtonpressed = false;
-bool leftButtonPressed = false;
-bool rightButtonPressed = false;
-bool enterButtonPressed = false;
-
 const String targetMessage = "ARDUINO_SERIAL_MEGACONNECTION_CONTROLLER_INITILIAZER_20050412_RADAR";
-
+bool unityConnected = false;
+unsigned long lastBeat = 0;
 
 void InitializeCommunicationGateway() {
-    while (!Serial) { ; } // wait for serial port (for Leonardo/Micro)
+    while (!Serial) {}
 
-    delay(1000); // allow PC to open port
+    Serial.println("READY");
+}
 
-    // Send the target message multiple times for reliability
-    for (int i = 0; i < 5; i++) {
-        Serial.println(targetMessage);
-        delay(200); // small delay between messages
+void UpdateCommunicationGateway() {
+    unsigned long now = millis();
+
+    // --- HANDSHAKE MODE ---
+    if (!unityConnected) {
+        if (now - lastBeat >= 500) {  // send handshake every 0.5 sec
+            Serial.println(targetMessage);
+            lastBeat = now;
+        }
     }
 
-    Serial.println("Arduino ready!");
-}
-void Handshake() {
-    if (Serial.available() > 0) {
-        String incoming = Serial.readStringUntil('\n'); // read until newline
-        incoming.trim(); // remove whitespace
+    // --- CONNECTED MODE ---
+    if (unityConnected) {
+        if (now - lastBeat >= 1000) {  // heartbeat every 1s
+            Serial.println("ALIVE");
+            lastBeat = now;
+        }
+    }
 
-        Serial.print("Received from Unity: ");
-        Serial.println(incoming);
+    // --- PROCESS INCOMING ---
+    if (Serial.available()) {
+        String msg = Serial.readStringUntil('\n');
+        msg.trim();
 
-        // Example: respond to a specific command
-        if (incoming == "PING") {
+        if (msg == "CONNECTED") {
+            unityConnected = true;
+            Serial.println("OK");
+        }
+
+        if (msg == "PING") {
             Serial.println("PONG");
         }
     }
@@ -47,26 +55,19 @@ void Handshake() {
 void PressUpButton() {
 }
 
-void PressDownButton() {
+void Send_PressAButton() {
+    Serial.println("BUTTON_A");
 }
 
-void PressLeftButton() {
+void Send_PressBButton() {
+    Serial.println("BUTTON_B");
 }
 
-void PressRightButton() {
+void Send_PressCButton() {
+    Serial.println("BUTTON_C");
 }
 
-void ReleaseUpButton() {
+void Send_PressDButton() {
+    Serial.println("BUTTON_D");
 }
 
-void ReleaseDownButton() {
-}
-
-void ReleaseLeftButton() {
-}
-
-void ReleaseRightButton() {
-}
-
-bool ConnectionInitialized() {
-}

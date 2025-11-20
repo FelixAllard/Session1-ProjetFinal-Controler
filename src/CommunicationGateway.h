@@ -5,19 +5,15 @@
 #ifndef SESSION1_PROJETFINAL_CONTROLER_COMMUNICATIONGATEWAY_H
 #define SESSION1_PROJETFINAL_CONTROLER_COMMUNICATIONGATEWAY_H
 void InitializeCommunicationGateway();
+void UpdateCommunicationGateway();
 
 //Direction buttons
 void PressUpButton();
-void PressDownButton();
-void PressLeftButton();
-void PressRightButton();
-void ReleaseUpButton();
-void ReleaseDownButton();
-void ReleaseLeftButton();
-void ReleaseRightButton();
 
+void Send_PressAButton();
+void Send_PressBButton();
+void Send_PressCButton();
+void Send_PressDButton();
 
-
-bool ConnectionInitialized();
 
 #endif //SESSION1_PROJETFINAL_CONTROLER_COMMUNICATIONGATEWAY_H

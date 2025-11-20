@@ -29,10 +29,10 @@ void UpdateButtonStatus() {
 
 
 void CheckButtonA() {
-    bool buttonState = digitalRead(pinButtonA);
+    bool buttonState = digitalRead(pinButtonA); //Low enfonce high sinon
     if (buttonState == LOW) {
         if (!ButtonA_WasPressed) {
-            PressAButton();
+            Send_PressAButton();
         }
     }
     ButtonA_WasPressed = buttonState;
