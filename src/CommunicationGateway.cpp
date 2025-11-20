@@ -7,7 +7,7 @@
 #include <Arduino.h>
 #include <HardwareSerial.h>
 
-const String targetMessage = "ARDUINO_SERIAL_MEGACONNECTION_CONTROLLER_INITILIAZER_20050412_RADAR";
+const String targetMessage = "ARDUINO_SERIAL_MEGACONNECTION";
 bool unityConnected = false;
 unsigned long lastBeat = 0;
 
