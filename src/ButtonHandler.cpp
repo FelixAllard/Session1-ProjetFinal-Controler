@@ -27,7 +27,6 @@ void UpdateButtonStatus() {
 }
 
 
-
 void CheckButtonA() {
     bool buttonState = digitalRead(pinButtonA);
     if (buttonState == LOW) {
@@ -39,10 +38,31 @@ void CheckButtonA() {
 }
 
 void CheckButtonB() {
+    bool buttonState = digitalRead(pinButtonB);
+    if (buttonState == LOW) {
+        if (!ButtonB_WasPressed) {
+            PressBButton();
+        }
+    }
+    ButtonB_WasPressed = buttonState;
 }
 
 void CheckButtonC() {
+    bool buttonState = digitalRead(pinButtonC);
+    if (buttonState == LOW) {
+        if (!ButtonC_WasPressed) {
+            PressCButton();
+        }
+    }
+    ButtonC_WasPressed = buttonState;
 }
 
 void CheckButtonD() {
+    bool buttonState = digitalRead(pinButtonD);
+    if (buttonState == LOW) {
+        if (!ButtonD_WasPressed) {
+            PressDButton();
+        }
+    }
+    ButtonD_WasPressed = buttonState;
 }
