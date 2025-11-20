@@ -5,6 +5,8 @@
 #include "ButtonHandler.h"
 #include <librobus.h>
 
+#include "CommunicationGateway.h"
+
 bool ButtonA_WasPressed = false;
 bool ButtonB_WasPressed = false;
 bool ButtonC_WasPressed = false;
@@ -18,25 +20,29 @@ void InitializeButtons() {
 }
 
 void UpdateButtonStatus() {
-    if (digitalRead(pinButtonA) == LOW)
-        ButtonA_WasPressed = true;
-    else
-        ButtonA_WasPressed = false;
-
-    if (digitalRead(pinButtonB) == LOW)
-        ButtonB_WasPressed = true;
-    else
-        ButtonB_WasPressed = false;
-
-    if (digitalRead(pinButtonC) == LOW)
-        ButtonC_WasPressed = true;
-    else
-        ButtonC_WasPressed = false;
-
-    if (digitalRead(pinButtonD) == LOW)
-        ButtonD_WasPressed = true;
-    else
-        ButtonD_WasPressed = false;
+    CheckButtonA();
+    CheckButtonB();
+    CheckButtonC();
+    CheckButtonD();
 }
 
-void CheckButtonA()
+
+
+void CheckButtonA() {
+    bool buttonState = digitalRead(pinButtonA);
+    if (buttonState == LOW) {
+        if (!ButtonA_WasPressed) {
+            PressAButton();
+        }
+    }
+    ButtonA_WasPressed = buttonState;
+}
+
+void CheckButtonB() {
+}
+
+void CheckButtonC() {
+}
+
+void CheckButtonD() {
+}
