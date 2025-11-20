@@ -3,7 +3,7 @@
 //
 
 #include "ButtonHandler.h"
-#include <librobus.h>
+#include <Arduino.h>
 
 #include "CommunicationGateway.h"
 
@@ -41,7 +41,7 @@ void CheckButtonB() {
     bool buttonState = digitalRead(pinButtonB);
     if (buttonState == LOW) {
         if (!ButtonB_WasPressed) {
-            Send_PressAButton();
+            Send_PressBButton();
         }
     }
     ButtonB_WasPressed = buttonState;
@@ -51,7 +51,7 @@ void CheckButtonC() {
     bool buttonState = digitalRead(pinButtonC);
     if (buttonState == LOW) {
         if (!ButtonC_WasPressed) {
-            Send_PressAButton();
+            Send_PressCButton();
         }
     }
     ButtonC_WasPressed = buttonState;
@@ -61,7 +61,7 @@ void CheckButtonD() {
     bool buttonState = digitalRead(pinButtonD);
     if (buttonState == LOW) {
         if (!ButtonD_WasPressed) {
-            Send_PressAButton();
+            Send_PressDButton();
         }
     }
     ButtonD_WasPressed = buttonState;
