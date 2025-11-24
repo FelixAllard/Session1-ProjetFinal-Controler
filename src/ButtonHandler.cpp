@@ -30,8 +30,9 @@ void UpdateButtonStatus() {
 void CheckButtonA() {
     bool buttonState = digitalRead(pinButtonA); //Low enfonce high sinon
     if (buttonState == LOW) {
-        if (!ButtonA_WasPressed) {
+        if (ButtonA_WasPressed) {
             Send_PressAButton();
+            delay(1000);
         }
     }
     ButtonA_WasPressed = buttonState;
@@ -40,8 +41,9 @@ void CheckButtonA() {
 void CheckButtonB() {
     bool buttonState = digitalRead(pinButtonB);
     if (buttonState == LOW) {
-        if (!ButtonB_WasPressed) {
+        if (ButtonB_WasPressed) {
             Send_PressBButton();
+            delay(1000);
         }
     }
     ButtonB_WasPressed = buttonState;
@@ -50,8 +52,9 @@ void CheckButtonB() {
 void CheckButtonC() {
     bool buttonState = digitalRead(pinButtonC);
     if (buttonState == LOW) {
-        if (!ButtonC_WasPressed) {
+        if (ButtonC_WasPressed) {
             Send_PressCButton();
+            delay(1000);
         }
     }
     ButtonC_WasPressed = buttonState;
@@ -60,8 +63,9 @@ void CheckButtonC() {
 void CheckButtonD() {
     bool buttonState = digitalRead(pinButtonD);
     if (buttonState == LOW) {
-        if (!ButtonD_WasPressed) {
+        if (ButtonD_WasPressed) {
             Send_PressDButton();
+            delay(1000);
         }
     }
     ButtonD_WasPressed = buttonState;
